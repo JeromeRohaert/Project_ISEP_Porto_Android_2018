@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Index">Index</string>
+    <string name="list">list movies</string>
+    <string name="button_deconnect">deconnect</string>
+</resources>

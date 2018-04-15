@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Project_ISEP_Porto_Android_2018</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="Sign_in">Sign in</string>
+    <string name="Sign_up">Sign up</string>
+    <string name="email">email</string>
+    <string name="create_account">Create your account</string>
+    <string name="first_name">first name</string>
+    <string name="second_name">second name</string>
+    <string name="button_return">return</string>
+</resources>
