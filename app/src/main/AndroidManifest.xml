@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jrme.project_isep_porto_android_2018">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,8 +22,10 @@
         </activity>
         <activity
             android:name=".Sign_up"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".index"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".index" />
+        <activity android:name=".List_Movies" />
+        <activity android:name=".recommandations"></activity>
     </application>
 
 </manifest>

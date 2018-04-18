@@ -3,4 +3,6 @@
     <string name="Index">Index</string>
     <string name="list">list movies</string>
     <string name="button_deconnect">deconnect</string>
+    <string name="connection">Connection</string>
+    <string name="recommandations">recommandations</string>
 </resources>
