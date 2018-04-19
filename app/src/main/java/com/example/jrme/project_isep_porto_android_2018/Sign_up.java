@@ -1,39 +1,28 @@
 package com.example.jrme.project_isep_porto_android_2018;
 
-import android.content.Context;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
-import com.android.volley.Cache;
-import com.android.volley.Network;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Sign_up extends AppCompatActivity {
+
+    String BASE_URL = "http://172.18.152.241:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +51,17 @@ public class Sign_up extends AppCompatActivity {
         return json;
     }
 
-    public void post_user(View v){
+    public void post_user(){
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://172.18.157.53:8080/IsepProject/Register"; // TODO change url
+        String url = BASE_URL+"Register"; // TODO change url
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
-                    }
-                },
-                new Response.ErrorListener()
-                {
+                    public void onResponse(String response){}},
+                new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", String.valueOf(error));
-                    }
-                }){
+                    public void onErrorResponse(VolleyError error) {}}){
             @Override
             protected Map<String, String> getParams() {
                 EditText email = (EditText) findViewById(R.id.email);
@@ -99,40 +79,34 @@ public class Sign_up extends AppCompatActivity {
             }
         };
         queue.add(postRequest);
-
+        Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
-
-  /*  public void test (View v){
-
+    public void post_user_test(View v){
 
         final TextView mTextView = (TextView) findViewById(R.id.tv_signup);
-// ...
+        EditText emailT = (EditText) findViewById(R.id.email);
+        String emailTest = emailT.getText().toString();
 
-// Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://172.18.157.53:8080/IsepProject/Test";
+        RequestQueue queueT = Volley.newRequestQueue(this);
+        String urlT = BASE_URL+"RegisterVerif?email="+emailTest;
 
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlT,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        mTextView.setText("Response is: "+ response.substring(0,500));
+                    public void onResponse(String response){
+                        Toast.makeText(Sign_up.this, "Email already used", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
+                post_user();
             }
+
         });
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-
+        queueT.add(stringRequest);
     }
-    */
-
 }
+
+
