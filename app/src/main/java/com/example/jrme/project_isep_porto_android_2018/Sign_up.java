@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class Sign_up extends AppCompatActivity {
 
-    String BASE_URL = "http://172.18.152.241:8080/IsepProject/";
+    String BASE_URL = "http://192.168.0.102:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
