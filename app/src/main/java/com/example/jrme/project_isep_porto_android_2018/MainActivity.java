@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public void sign_in(View view) {
+
+    // old version without server
+    public void sign_in(View view) {
         Intent intent = new Intent(this, index.class);
         EditText email = findViewById(R.id.email_login);
         EditText password = findViewById(R.id.password_login);
@@ -56,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     });
             alertDialog.show();
         }
-    }*/
-
+    }
+/*
     public void sign_in (View view){
 
         final Intent intent = new Intent(this, index.class);
@@ -85,5 +87,5 @@ public class MainActivity extends AppCompatActivity {
             });
             queueT.add(stringRequest);
     }
-
+*/
 }
