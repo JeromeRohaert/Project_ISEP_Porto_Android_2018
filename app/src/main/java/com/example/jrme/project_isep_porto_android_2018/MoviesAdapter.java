@@ -1,12 +1,10 @@
 package com.example.jrme.project_isep_porto_android_2018;
 
 import android.content.Context;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,8 +16,8 @@ public class MoviesAdapter extends ArrayAdapter<Movies> {
     }
 
     private class MoviesViewHolder {
-        public TextView title;
-        public TextView release_date;
+        public TextView row_title;
+        public TextView row_release_date;
     }
 
     @Override
@@ -32,12 +30,18 @@ public class MoviesAdapter extends ArrayAdapter<Movies> {
         MoviesViewHolder viewHolder = (MoviesViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new MoviesViewHolder();
-            viewHolder.title = (TextView) convertView.findViewById(R.id.title);
-            viewHolder.release_date = (TextView) convertView.findViewById(R.id.release);
+            viewHolder.row_title = (TextView) convertView.findViewById(R.id.row_title);
+            viewHolder.row_release_date = (TextView) convertView.findViewById(R.id.row_release);
             convertView.setTag(viewHolder);
         }
 
+        //getItem(position) va récupérer l'item [position] de la List<Tweet> tweets
+        Movies movieG = getItem(position);
+
+        //il ne reste plus qu'à remplir notre vue
+        viewHolder.row_title.setText(movieG.getTitle());
+        viewHolder.row_release_date.setText(movieG.getRelease());
+
         return convertView;
     }
-
 }

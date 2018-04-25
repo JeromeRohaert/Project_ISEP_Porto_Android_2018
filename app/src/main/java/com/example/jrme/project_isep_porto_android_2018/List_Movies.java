@@ -17,6 +17,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,5 +85,58 @@ public class List_Movies extends AppCompatActivity {
         movies.add(new Movies("Mathieu", "Il est quelle heure ??"));
         movies.add(new Movies("Willy", "On y est presque"));
         return movies;
+    }
+
+    public void OnSearchTest(View view){
+        EditText editTextSearch = findViewById(R.id.editText_search);
+
+        String query = String.valueOf(editTextSearch.getText());
+
+        RequestQueue queueT = Volley.newRequestQueue(this);
+        String url = "https://api.themoviedb.org/3/search/movie?api_key=8d4eebc9735f52f03dbf6c13a652b5c7&query="+query+"&page=1";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response){
+
+                        mListView = (ListView) findViewById(R.id.list_movies);
+
+                        List<Movies> movies = generateList(response);
+
+                        MoviesAdapter adapter = new MoviesAdapter(List_Movies.this, movies);
+                        mListView.setAdapter(adapter);
+
+                        Toast.makeText(List_Movies.this, "It work", Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(List_Movies.this, "Can't find", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        queueT.add(stringRequest);
+    }
+
+    public List<Movies> generateList(String response){
+        List<Movies> list = new ArrayList<Movies>();
+
+        JSONObject obj;
+        try {
+            obj = new JSONObject(response);
+            JSONArray results = obj.getJSONArray("results");
+
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject c = results.getJSONObject(i);
+                String title = c.getString("title");
+                String release_date = c.getString("release_date");
+                list.add(new Movies(title,release_date));
+            }
+
+        } catch (Throwable t) {}
+
+        return list;
     }
 }
