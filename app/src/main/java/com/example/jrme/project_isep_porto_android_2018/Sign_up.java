@@ -11,6 +11,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -19,10 +20,11 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 public class Sign_up extends AppCompatActivity {
 
-    String BASE_URL = "http://192.168.0.102:8080/IsepProject/";
+    String BASE_URL = "http://172.18.156.115:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,29 +60,38 @@ public class Sign_up extends AppCompatActivity {
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response){}},
+                    public void onResponse(String response){
+                        Toast.makeText(Sign_up.this, "Account created", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }},
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {}}){
+                    public void onErrorResponse(VolleyError error) {
+                        if (error.networkResponse == null) {
+                            if (error.getClass().equals(TimeoutError.class)) {
+                                // Show timeout error message
+                                Toast.makeText(Sign_up.this, "Oops. Timeout error!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }}){
+
             @Override
-            protected Map<String, String> getParams() {
-                EditText email = (EditText) findViewById(R.id.email);
-                EditText password = (EditText) findViewById(R.id.password);
-                EditText first_name = (EditText) findViewById(R.id.first_name);
-                EditText last_name = (EditText) findViewById(R.id.last_name);
+                protected Map<String, String> getParams() {
+                    EditText email = (EditText) findViewById(R.id.email);
+                    EditText password = (EditText) findViewById(R.id.password);
+                    EditText first_name = (EditText) findViewById(R.id.first_name);
+                    EditText last_name = (EditText) findViewById(R.id.last_name);
 
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("email", String.valueOf(email.getText()));
-                params.put("pwd", String.valueOf(password.getText()));
-                params.put("first", String.valueOf(first_name.getText()));
-                params.put("last", String.valueOf(last_name.getText()));
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("email", String.valueOf(email.getText()));
+                    params.put("pwd", String.valueOf(password.getText()));
+                    params.put("first", String.valueOf(first_name.getText()));
+                    params.put("last", String.valueOf(last_name.getText()));
 
-                return params;
+                    return params;
             }
         };
         queue.add(postRequest);
-        Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
-        finish();
     }
 
     public void post_user_test(View v){

@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
-    String BASE_URL = "http://192.168.0.102:8080/IsepProject/";
+    String BASE_URL = "http://172.18.156.115:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+/*
     // old version without server
     public void sign_in(View view) {
         Intent intent = new Intent(this, index.class);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
         }
     }
-/*
+*/
     public void sign_in (View view){
 
         final Intent intent = new Intent(this, index.class);
@@ -87,5 +87,5 @@ public class MainActivity extends AppCompatActivity {
             });
             queueT.add(stringRequest);
     }
-*/
+
 }

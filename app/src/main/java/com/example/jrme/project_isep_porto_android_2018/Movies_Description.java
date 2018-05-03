@@ -56,7 +56,7 @@ public class Movies_Description extends AppCompatActivity {
                             JSONObject description = new JSONObject(response);
                             String title = description.getString("title");
                             tv.setText(title);
-                            String url_poster_string = "http://image.tmdb.org/t/p/w185/"+ description.getString("poster_path");
+                            String url_poster_string = "http://image.tmdb.org/t/p/w500/"+ description.getString("poster_path");
                             Picasso.with(Movies_Description.this).load(url_poster_string+"").into(iv);
                             String s_descritpion = description.getString("overview");
                             tv_description.setText(s_descritpion);
