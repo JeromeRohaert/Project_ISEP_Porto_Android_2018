@@ -26,7 +26,8 @@
         <activity android:name=".index" />
         <activity android:name=".List_Movies" />
         <activity android:name=".recommandations" />
-        <activity android:name=".Movies_Description"></activity>
+        <activity android:name=".Movies_Description" />
+        <activity android:name=".Ratings"></activity>
     </application>
 
 </manifest>

@@ -30,6 +30,9 @@ import java.util.List;
 
 public class List_Movies extends AppCompatActivity {
 
+    Intent intent;
+    String email;
+
     String API_KEY = "8d4eebc9735f52f03dbf6c13a652b5c7";
     Context context = List_Movies.this;
     ListView mListView;
@@ -38,6 +41,10 @@ public class List_Movies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__movies);
+
+        intent = getIntent();
+        email = intent.getStringExtra("emailGet");
+
     }
 
     public List<Movies> generateList(String response){
@@ -53,7 +60,7 @@ public class List_Movies extends AppCompatActivity {
                 String title = c.getString("title");
                 String release_date = c.getString("release_date");
                 String id = c.getString("id");
-                list.add(new Movies(id,title,release_date));
+                list.add(new Movies(id,title,release_date,null,null));
             }
 
         } catch (Throwable t) {}
@@ -61,13 +68,13 @@ public class List_Movies extends AppCompatActivity {
         return list;
     }
 
-    public void OnSearchTestMeow(View view){
+    public void OnSearch(View view){
         EditText editTextSearch = findViewById(R.id.editText_search);
 
         String query = String.valueOf(editTextSearch.getText());
 
         RequestQueue queueT = Volley.newRequestQueue(this);
-        String url = "https://api.themoviedb.org/3/search/movie?api_key=8d4eebc9735f52f03dbf6c13a652b5c7&query="+query+"&page=1";
+        String url = "https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&query="+query+"&page=1";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -84,10 +91,11 @@ public class List_Movies extends AppCompatActivity {
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent intent = new Intent(List_Movies.this, Movies_Description.class);
+                                Intent intent_description = new Intent(List_Movies.this, Movies_Description.class);
                                 Movies listItem = (Movies) mListView.getItemAtPosition(position);
-                                intent.putExtra("id",listItem.getId());
-                                startActivity(intent);
+                                intent_description.putExtra("id",listItem.getId());
+                                intent_description.putExtra("emailGet",email);
+                                startActivity(intent_description);
                             }
                         });
                     }

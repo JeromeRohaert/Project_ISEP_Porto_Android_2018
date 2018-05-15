@@ -20,7 +20,8 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
-    String BASE_URL = "http://172.18.156.115:8080/IsepProject/";
+    String BASE_URL = "http://192.168.0.103:8080/IsepProject/";
+    //String BASE_URL = "http://172.18.152.165:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, index.class);
         final TextView mTextView = (TextView) findViewById(R.id.tv_signup);
         EditText emailT = (EditText) findViewById(R.id.email_login);
-        String emailTest = emailT.getText().toString();
+        final String emailTest = emailT.getText().toString();
         EditText passwordT = (EditText) findViewById(R.id.password_login);
         String passwordTest = passwordT.getText().toString();
 
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response){
+                            intent.putExtra("emailGet", emailTest);
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
