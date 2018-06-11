@@ -14,6 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#3d3d3d"
             android:orientation="horizontal">
 
             <EditText
@@ -29,6 +30,8 @@
                 android:ems="10"
                 android:hint="@android:string/search_go"
                 android:inputType="textPersonName"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="@android:color/darker_gray"
                 app:layout_constraintEnd_toStartOf="@+id/button_search"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,11 +39,12 @@
             <ImageButton
                 android:id="@+id/button_search"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
+                android:background="@android:color/darker_gray"
                 android:onClick="OnSearch"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,6 +56,7 @@
             android:id="@+id/list_movies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#3d3d3d"
             tools:layout_editor_absoluteX="43dp"
             tools:layout_editor_absoluteY="278dp" />
 

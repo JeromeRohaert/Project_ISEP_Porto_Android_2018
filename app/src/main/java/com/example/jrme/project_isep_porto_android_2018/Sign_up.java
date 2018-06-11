@@ -25,7 +25,7 @@ import java.util.concurrent.TimeoutException;
 public class Sign_up extends AppCompatActivity {
 
     String BASE_URL = "http://192.168.0.103:8080/IsepProject/";
-    //String BASE_URL = "http://172.18.152.165:8080/IsepProject/";
+    //String BASE_URL = "http://172.18.157.63:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

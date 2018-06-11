@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
@@ -38,7 +39,7 @@ public class Ratings extends AppCompatActivity {
     String title;
 
     String BASE_URL = "http://192.168.0.103:8080/IsepProject/";
-    //String BASE_URL = "http://172.18.152.165:8080/IsepProject/";
+    //String BASE_URL = "http://172.18.157.63:8080/IsepProject/";
     String API_KEY = "8d4eebc9735f52f03dbf6c13a652b5c7";
     Context context = Ratings.this;
     ListView mListView;
@@ -133,6 +134,12 @@ public class Ratings extends AppCompatActivity {
                             }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            if (error.networkResponse == null) {
+                                if (error.getClass().equals(TimeoutError.class)) {
+                                    // Show timeout error message
+                                    Toast.makeText(Ratings.this, "Oops. Timeout error!", Toast.LENGTH_LONG).show();
+                                }
+                            }
                         }
 
                     });

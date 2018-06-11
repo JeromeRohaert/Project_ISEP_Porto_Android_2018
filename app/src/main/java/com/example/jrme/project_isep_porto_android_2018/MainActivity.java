@@ -14,14 +14,15 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
 
+    //String BASE_URL = "http://172.18.157.63:8080/IsepProject/";
     String BASE_URL = "http://192.168.0.103:8080/IsepProject/";
-    //String BASE_URL = "http://172.18.152.165:8080/IsepProject/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         String verif_email = String.valueOf(email.getText());
         String verif_password = String.valueOf(password.getText());
 
-        if(verif_email.equals("meow") && verif_password.equals("meow")){
+        if(verif_email.equals("test") && verif_password.equals("test")){
             startActivity(intent);
         } else {
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 */
+
     public void sign_in (View view){
 
         final Intent intent = new Intent(this, index.class);
@@ -84,8 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(MainActivity.this, "This account doesn't exist", Toast.LENGTH_SHORT).show();
+                    if (error.networkResponse == null) {
+                        if (error.getClass().equals(TimeoutError.class)) {
+                            // Show timeout error message
+                            Toast.makeText(MainActivity.this, "Oops. Timeout error!", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
-
             });
             queueT.add(stringRequest);
     }

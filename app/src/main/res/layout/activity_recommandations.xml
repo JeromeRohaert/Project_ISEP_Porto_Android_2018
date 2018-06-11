@@ -4,6 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#3d3d3d"
     tools:context=".recommandations">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <ImageView
+                android:id="@+id/iv_poster1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <ImageView
+                android:id="@+id/iv_poster2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tv_title3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray"
+                tools:layout_editor_absoluteX="167dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <ImageView
+                android:id="@+id/iv_poster3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp" />
+
+            <Button
+                android:id="@+id/finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:onClick="OnClickNotInteresting"
+                android:text="I'm not interested"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="161dp"
+                tools:layout_editor_absoluteY="206dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
