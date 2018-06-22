@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.android.volley.Request;
@@ -26,7 +27,10 @@ import java.util.Map;
 public class recommandations extends AppCompatActivity {
 
     String email;
-    String BASE_URL = "http://192.168.0.103:8080/IsepProject/";
+    //String BASE_URL = "http://192.168.0.102:8080/IsepProject/";
+    String BASE_URL = "http://172.18.159.125:8080/IsepProject/";
+    //String BASE_URL = "http://172.18.159.82:8080/IsepProject/";
+           // String BASE_URL = "http://172.18.154.229:8080/IsepProject/";
     TextView tv;
     ImageView iv;
     TextView tv2;
@@ -57,6 +61,7 @@ public class recommandations extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response){
+
                         String [] split1 = response.split(",");
                         for(int i = 0; i<split1.length;i++){
                             String [] split2 = split1[i].split("\"");

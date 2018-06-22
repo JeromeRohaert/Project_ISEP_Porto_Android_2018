@@ -23,11 +23,21 @@
         <activity
             android:name=".Sign_up"
             android:screenOrientation="portrait" />
-        <activity android:name=".index" />
-        <activity android:name=".List_Movies" />
-        <activity android:name=".recommandations" />
-        <activity android:name=".Movies_Description" />
-        <activity android:name=".Ratings"></activity>
+        <activity
+            android:name=".index"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".List_Movies"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".recommandations"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Movies_Description"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Ratings"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
